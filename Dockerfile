@@ -7,8 +7,8 @@ RUN mkdir -p /membership/run
 RUN mkdir -p /membership/logs
 RUN mkdir -p /membership/lib
 COPY target/membership-0.0.1-SNAPSHOT.jar /membership/lib/app.jar
-RUN chown -R bd:bd /auth
+RUN chown -R bd:bd /membership
 USER bd
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.profiles.active=prod","/auth/lib/app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","-Dspring.profiles.active=prod","/membership/lib/app.jar"]
 
