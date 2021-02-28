@@ -141,7 +141,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.byung8.membership.MembershipApplication</mainClass>
+                            <mainClass>com.byung8.member.MembershipApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
