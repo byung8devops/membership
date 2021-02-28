@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.byung8.member.mapper.MemberMapper">
+	
+	<insert id="registerMember" parameterType="com.byung8.common.domain.Member">
+		INSERT INTO TB_FS_MEMBER (
+		  MBR_EMLADDR, MBR_NM, MBR_GNDR
+		, BRTH_DAY, HEIGHT, PASSWORD
+		) VALUES (
+		  #{email}, #{name}, #{genderId}
+		, #{birthday}, #{height}, #{password})
+	</insert>
+	
+	<select id="findMemberByEmail" parameterType="java.lang.String" resultType="com.byung8.common.domain.Member">
+		SELECT
+		  a.MBR_ID as memberId
+		 ,a.MBR_EMLADDR as email
+		 ,a.MBR_NM as name
+		 ,a.MBR_GNDR as genderId
+		 , (SELECT b.CD_NM FROM TB_CMM_CD b WHERE a.MBR_GNDR=b.CD_ID AND b.GRP_VAL='06') as genderNm
+		 ,a.BRTH_DAY as birthday
+		 ,a.HEIGHT as height
+		 ,a.PASSWORD as password
+		 ,a.USE_YN as useYn
+		 ,a.REG_DT as regDt
+		 ,a.UDP_DT as udpDt
+		FROM TB_FS_MEMBER a
+		WHERE a.USE_YN='Y'
+		AND a.MBR_EMLADDR = '${value}'
+	</select>
+	
+	<select id="findMemberByName" parameterType="java.lang.String" resultType="com.byung8.common.domain.Member">
+		SELECT
+		  a.MBR_ID as memberId
+		 ,a.MBR_EMLADDR as email
+		 ,a.MBR_NM as name
+		 ,a.MBR_GNDR as genderId
+		 , (SELECT b.CD_NM FROM TB_CMM_CD b WHERE a.MBR_GNDR=b.CD_ID AND b.GRP_VAL='06') as genderNm
+		 ,a.BRTH_DAY as birthday
+		 ,a.HEIGHT as height
+		 ,a.PASSWORD as password
+		 ,a.USE_YN as useYn
+		 ,a.REG_DT as regDt
+		 ,a.UDP_DT as udpDt
+		FROM TB_FS_MEMBER a
+		WHERE a.USE_YN='Y'
+		AND a.MBR_NM = '${value}'
+	</select>
+	
+	<select id="findMemberById" parameterType="int" resultType="com.byung8.common.domain.Member">
+		SELECT
+		  a.MBR_ID as memberId
+		 ,a.MBR_EMLADDR as email
+		 ,a.MBR_NM as name
+		 ,a.MBR_GNDR as genderId
+		 , (SELECT b.CD_NM FROM TB_CMM_CD b WHERE a.MBR_GNDR=b.CD_ID AND b.GRP_VAL='06') as genderNm
+		 ,a.BRTH_DAY as birthday
+		 ,a.HEIGHT as height
+		 ,a.PASSWORD as password
+		 ,a.USE_YN as useYn
+		 ,a.REG_DT as regDt
+		 ,a.UDP_DT as udpDt
+		FROM TB_FS_MEMBER a
+		WHERE a.USE_YN='Y'
+		AND a.MBR_ID = ${value}
+	</select>
+	
+	<select id="findMemberListByEmail" parameterType="java.lang.String" resultType="com.byung8.common.domain.Member">
+		SELECT
+		  a.MBR_ID as memberId
+		 ,a.MBR_EMLADDR as email
+		 ,a.MBR_NM as name
+		 ,a.MBR_GNDR as genderId
+		 , (SELECT b.CD_NM FROM TB_CMM_CD b WHERE a.MBR_GNDR=b.CD_ID AND b.GRP_VAL='06') as genderNm
+		 ,a.BRTH_DAY as birthday
+		 ,a.HEIGHT as height
+		 ,NULL as password
+		 ,a.USE_YN as useYn
+		 ,a.REG_DT as regDt
+		 ,a.UDP_DT as udpDt
+		FROM TB_FS_MEMBER a
+		WHERE a.USE_YN='Y'
+		AND a.MBR_EMLADDR LIKE CONCAT('%','${value}','%')
+	</select>
+	
+	<select id="findMemberListByName" parameterType="java.lang.String" resultType="com.byung8.common.domain.Member">
+		SELECT
+		  a.MBR_ID as memberId
+		 ,a.MBR_EMLADDR as email
+		 ,a.MBR_NM as name
+		 ,a.MBR_GNDR as genderId
+		 , (SELECT b.CD_NM FROM TB_CMM_CD b WHERE a.MBR_GNDR=b.CD_ID AND b.GRP_VAL='06') as genderNm
+		 ,a.BRTH_DAY as birthday
+		 ,a.HEIGHT as height
+		 ,NULL as password
+		 ,a.USE_YN as useYn
+		 ,a.REG_DT as regDt
+		 ,a.UDP_DT as udpDt
+		FROM TB_FS_MEMBER a
+		WHERE a.USE_YN='Y'
+		AND a.MBR_NM LIKE CONCAT('%','${value}','%')
+	</select>
+	
+	<select id="findMemberList" resultType="com.byung8.common.domain.Member">
+		SELECT
+		  a.MBR_ID as memberId
+		 ,a.MBR_EMLADDR as email
+		 ,a.MBR_NM as name
+		 ,a.MBR_GNDR as genderId
+		 , (SELECT b.CD_NM FROM TB_CMM_CD b WHERE a.MBR_GNDR=b.CD_ID AND b.GRP_VAL='06') as genderNm
+		 ,a.BRTH_DAY as birthday
+		 ,a.HEIGHT as height
+		 ,NULL as password
+		 ,a.USE_YN as useYn
+		 ,a.REG_DT as regDt
+		 ,a.UDP_DT as udpDt
+		FROM TB_FS_MEMBER a
+		WHERE a.USE_YN='Y'
+	</select>
+	
+	<update id="modifyMemberAuth" parameterType="com.byung8.common.domain.MemberAuth">
+		UPDATE TB_FS_MEMBER
+		SET PASSWORD='${password}'
+		WHERE MBR_ID=${memberId}
+	</update>
+	
+	<update id="updateMember" parameterType="com.byung8.common.domain.Member">
+		UPDATE TB_FS_MEMBER
+		SET MBR_EMLADDR='${email}'
+		, BRTH_DAY='${birthday}'
+		, HEIGHT=${height}
+		WHERE MBR_ID=${memberId}
+	</update>
+
+	<update id="updateMemberNotUsed" parameterType="com.byung8.common.domain.Member">
+		UPDATE TB_FS_MEMBER
+		SET USE_YN='N'
+		WHERE MBR_ID=${memberId}
+	</update>
+
+	<update id="updateMemberAvailable" parameterType="com.byung8.common.domain.Member">
+		UPDATE TB_FS_MEMBER
+		SET USE_YN='Y'
+		WHERE MBR_ID=${memberId}
+		AND USE_YN='N'
+	</update>
+</mapper>

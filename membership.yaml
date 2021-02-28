@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: membership
+  name: membership
+  namespace: fitness
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: membership
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: membership
+    spec:
+      containers:
+      - image: kube-01.bd.com:5000/fitness/membership:0.1
+        name: membership
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: membership
+    release: fitness
+  name: membership
+  namespace: fitness
+spec:
+  ports:
+  - name: http-svc
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: membership
+  type: ClusterIP
+status:
+  loadBalancer: {}
