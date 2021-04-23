@@ -30,6 +30,19 @@
         </encoder>
     </appender>
 
+    <appender name="dailyRollingFileAppender"
+	class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>${log.file.path:-/membership/logs}/application.log</file>
+	<prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>${log.file.path:-/membership/logs}/application-%d{yyyyMMdd}.log</fileNamePattern>
+		<maxHistory>10</maxHistory>
+	</rollingPolicy>
+	<encoder>
+		<pattern>%-5level | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
+	</encoder>
+    </appender>
+
     <logger name="java.sql" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
@@ -70,5 +83,6 @@
     <root level="${LOG_LEVEL:-INFO}">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="STDERR" />
+        <appender-ref ref="dailyRollingFileAppender" />
     </root>
 </configuration>
