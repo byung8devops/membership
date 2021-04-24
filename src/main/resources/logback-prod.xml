@@ -8,7 +8,7 @@
       		<level>WARN</level>
     	</filter>
 		<encoder>
-        	<pattern>[%level:] | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
+        	<pattern>%level | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
     	</encoder>
   	</appender>
     
@@ -26,7 +26,7 @@
       		<onMatch>DENY</onMatch>
     	</filter>
         <encoder>
-            <pattern>[%level:] | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
+            <pattern>%level | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -38,7 +38,7 @@
 			<maxHistory>10</maxHistory>
 		</rollingPolicy>
 		<encoder>
-			<pattern>[%level:] | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
+			<pattern>%level | %d{yyyy-MM-dd HH:mm.ss.SSS} | %logger{35}[%method:%line][%thread] - %msg%n</pattern>
 		</encoder>
     </appender>
 
