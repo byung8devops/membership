@@ -32,9 +32,9 @@
 
     <appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<append>false</append>
-		<file>${logfilepath:-/membership/logs}/application.log</file>
+		<file>${logfilepath:-/data/membership/logs}/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${logfilepath:-/membership/logs}/application-%d{yyyyMMdd}.log</fileNamePattern>
+			<fileNamePattern>${logfilepath:-/data/membership/logs}/application-%d{yyyyMMdd}.log</fileNamePattern>
 			<maxHistory>10</maxHistory>
 		</rollingPolicy>
 		<encoder>
