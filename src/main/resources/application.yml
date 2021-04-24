@@ -30,7 +30,7 @@ spring:
 spring:
   profiles: prod
   pid:
-    file: /membership/run/membership.pid
+    file: /data/membership/run/membership.pid
   datasource:
     url: jdbc:mysql://mysql.fitness.svc.cluster.local:3306/fitness?useUnicode=yes&characterEncoding=UTF-8
     username: byung8
@@ -40,7 +40,7 @@ logging:
   config: classpath:logback-prod.xml
 log:
   file:
-    path: "/membership/logs"
+    path: "/data/membership/logs"
 server:
   port: 8080
   servlet:
@@ -52,7 +52,7 @@ server:
 spring:
   profiles: local
   pid:
-    file: E://dev/work/membership/run/membership.pid
+    file: D://dev/work/membership/run/membership.pid
   datasource:
     url: jdbc:mysql://192.168.0.2:13306/fitness?useUnicode=yes&characterEncoding=UTF-8
     username: byung8
@@ -62,7 +62,7 @@ logging:
   config: classpath:logback-local.xml
 log:
   file:
-    path: "E://dev/work/membership/logs"
+    path: "D://dev/work/membership/logs"
 server:
   port: 8084
   servlet:
